@@ -1,0 +1,3 @@
+Flask>=3.0,<4.0
+-e ../project-b
+pytest>=8.0,<9.0

@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <meta
+        name="description"
+        content="Project A Task Manager"
+    >
+
+    <title>Task Manager — Project A</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+
+<div class="app-shell">
+
+    <header class="topbar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                ✓
+            </div>
+
+            <div>
+                <span class="brand-kicker">
+                    Project A
+                </span>
+
+                <h1>
+                    Task Manager
+                </h1>
+            </div>
+        </div>
+
+        <button
+            id="themeButton"
+            class="icon-button"
+            type="button"
+            aria-label="Сменить тему"
+        >
+            <span id="themeIcon">
+                ☾
+            </span>
+        </button>
+
+    </header>
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-copy">
+
+                <span class="badge">
+                    Flask + JavaScript + Project B
+                </span>
+
+                <h2>
+                    Управляй задачами
+                    <span>
+                        без лишнего шума.
+                    </span>
+                </h2>
+
+                <p>
+                    Учебное Flask-приложение для
+                    демонстрации работы двух
+                    взаимосвязанных Python-проектов.
+                </p>
+
+            </div>
+
+            <div class="hero-status">
+
+                <div class="status-dot"></div>
+
+                <div>
+                    <span>
+                        Сервер
+                    </span>
+
+                    <strong>
+                        localhost:5000
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="dashboard-grid">
+
+            <div class="main-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <span class="eyebrow">
+                            Мои задачи
+                        </span>
+
+                        <h3>
+                            Сегодняшний список
+                        </h3>
+                    </div>
+
+                    <div
+                        id="taskCounter"
+                        class="counter"
+                    >
+                        0 задач
+                    </div>
+
+                </div>
+
+
+                <form
+                    id="taskForm"
+                    class="task-form"
+                >
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            +
+                        </span>
+
+                        <input
+                            id="taskInput"
+                            name="title"
+                            type="text"
+                            placeholder="Например: подготовить отчёт..."
+                            maxlength="120"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+                    <button
+                        class="primary-button"
+                        type="submit"
+                    >
+                        Добавить
+                    </button>
+
+                </form>
+
+
+                <div class="filters">
+
+                    <button
+                        class="filter-button active"
+                        data-filter="all"
+                        type="button"
+                    >
+                        Все
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="active"
+                        type="button"
+                    >
+                        Активные
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="completed"
+                        type="button"
+                    >
+                        Выполненные
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="taskList"
+                    class="task-list"
+                ></div>
+
+
+                <div
+                    id="emptyState"
+                    class="empty-state"
+                >
+                    <div class="empty-icon">
+                        ✓
+                    </div>
+
+                    <h4>
+                        Здесь пока пусто
+                    </h4>
+
+                    <p>
+                        Добавь первую задачу,
+                        чтобы начать работу.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <aside class="side-column">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <span>
+                            Прогресс
+                        </span>
+
+                        <strong id="progressPercent">
+                            0%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-track">
+
+                        <div
+                            id="progressBar"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                    <div class="stats-row">
+
+                        <div>
+                            <strong id="totalTasks">
+                                0
+                            </strong>
+
+                            <span>
+                                Всего
+                            </span>
+                        </div>
+
+                        <div>
+                            <strong id="completedTasks">
+                                0
+                            </strong>
+
+                            <span>
+                                Готово
+                            </span>
+                        </div>
+
+                        <div>
+                            <strong id="activeTasks">
+                                0
+                            </strong>
+
+                            <span>
+                                Осталось
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="integration-card">
+
+                    <div class="integration-icon">
+                        B
+                    </div>
+
+                    <span class="eyebrow">
+                        Project B
+                    </span>
+
+                    <h3>
+                        Проверка интеграции
+                    </h3>
+
+                    <p>
+                        Project A использует
+                        функции библиотеки
+                        дат, строк, файлов
+                        и логирования.
+                    </p>
+
+                    <button
+                        id="demoButton"
+                        class="secondary-button"
+                        type="button"
+                    >
+                        Запустить проверку
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+        <section
+            id="demoPanel"
+            class="demo-panel hidden"
+        >
+
+            <div class="demo-header">
+
+                <div>
+                    <span class="eyebrow">
+                        API /api/demo
+                    </span>
+
+                    <h3>
+                        Результат Project B
+                    </h3>
+                </div>
+
+                <button
+                    id="closeDemoButton"
+                    class="close-button"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div
+                id="demoContent"
+                class="demo-grid"
+            ></div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <span>
+            Project A
+        </span>
+
+        <span class="footer-divider">
+            •
+        </span>
+
+        <span>
+            Flask Task Manager
+        </span>
+
+        <span class="footer-divider">
+            •
+        </span>
+
+        <span>
+            Project B Integration
+        </span>
+
+    </footer>
+
+</div>
+
+
+<div
+    id="toast"
+    class="toast"
+>
+    <span id="toastText"></span>
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='js/app.js') }}"
+></script>
+
+</body>
+</html>
