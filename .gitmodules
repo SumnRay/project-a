@@ -1,0 +1,3 @@
+[submodule "libs/project-b"]
+	path = libs/project-b
+	url = https://github.com/SumnRay/project-b.git
